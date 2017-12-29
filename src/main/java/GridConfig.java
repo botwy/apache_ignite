@@ -6,7 +6,7 @@ import org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder;
 import java.util.Arrays;
 
 public class GridConfig {
-    public  static IgniteConfiguration createCfg(boolean flag) {
+    public  static IgniteConfiguration createCfg(String instName, boolean flag) {
         IgniteConfiguration igniteConfiguration = new IgniteConfiguration();
        // igniteConfiguration.setLocalHost("127.0.0.1");
 
@@ -17,6 +17,10 @@ public class GridConfig {
         igniteConfiguration.setDiscoverySpi(discoverySpi);
         igniteConfiguration.setPeerClassLoadingEnabled(true);
         igniteConfiguration.setClientMode(flag);
+
+        if(!flag)
+        igniteConfiguration.setIgniteInstanceName(instName);
+
         return  igniteConfiguration;
     }
 }

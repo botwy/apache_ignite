@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class CacheConfig {
     public  static CacheConfiguration createCfg() {
         CacheConfiguration cfg = new CacheConfiguration();
-        cfg.setCacheMode(CacheMode.REPLICATED);
+        cfg.setCacheMode(CacheMode.PARTITIONED);
         cfg.setName("#CLIENT");
         return cfg;
     }
