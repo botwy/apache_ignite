@@ -5,10 +5,18 @@ import org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder;
 
 import java.util.Arrays;
 
+/**
+ * создание конфигурации сервера и клиента
+ */
 public class GridConfig {
-    public  static IgniteConfiguration createCfg(String instName, boolean flag) {
+    /**
+     *
+     * @param nodeName
+     * @param clientMode
+     * @return если clientMode = false, то возвращает конфигурацию сервера (Ноды)
+     */
+    public  static IgniteConfiguration createCfg(String nodeName, boolean clientMode) {
         IgniteConfiguration igniteConfiguration = new IgniteConfiguration();
-       // igniteConfiguration.setLocalHost("127.0.0.1");
 
         TcpDiscoverySpi discoverySpi = new TcpDiscoverySpi();
         TcpDiscoveryVmIpFinder tcpDiscoveryVmIpFinder = new TcpDiscoveryVmIpFinder();
@@ -16,10 +24,10 @@ public class GridConfig {
         discoverySpi.setIpFinder(tcpDiscoveryVmIpFinder);
         igniteConfiguration.setDiscoverySpi(discoverySpi);
         igniteConfiguration.setPeerClassLoadingEnabled(true);
-        igniteConfiguration.setClientMode(flag);
+        igniteConfiguration.setClientMode(clientMode);
 
-        if(!flag)
-        igniteConfiguration.setIgniteInstanceName(instName);
+        if(!clientMode)
+        igniteConfiguration.setIgniteInstanceName(nodeName);
 
         return  igniteConfiguration;
     }

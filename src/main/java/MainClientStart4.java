@@ -7,14 +7,15 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Выполняем распределенные вычисления на Нодах: apply (замыкания)
+ * И читаем из кеша список записей
+ */
 public class MainClientStart4 {
     public  static void main(String...args) {
         try(Ignite ignClient = Ignition.start(GridConfig.createCfg("",true))) {
             IgniteCache cache = ignClient.getOrCreateCache(CacheConfig.createCfg());
-          /* for (int i = 0; i < 5; i++) {
-               cache.put(i,new Client("Victor",i+"111"));
-           }
-*/
+
             IgniteCompute igniteCompute = ignClient.compute();
             for (int i = 0; i < 5 ; i++) {
                 Client res = igniteCompute.apply(

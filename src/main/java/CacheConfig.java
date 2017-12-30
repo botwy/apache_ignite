@@ -6,6 +6,9 @@ import org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder;
 
 import java.util.Arrays;
 
+/**
+ * создание конфигурации кеша
+ */
 public class CacheConfig {
     public  static CacheConfiguration createCfg() {
         CacheConfiguration cfg = new CacheConfiguration();
